@@ -17,5 +17,11 @@ for i in *.bam;do samtools index $i;done
  ```
 ./angsd -bam ./prueba/bam.filelist -GL 2 -out ./prueba/output -nThreads 20 -doMajorMinor 1 -doMaf 2 -SNP_pval 1e-6 -ref reference.fasta
 ```
-maybe incompatible parameters? maybe I was missing the doMaf?
+maybe incompatible parameters? maybe I was missing the doMaf? snp_pvalue can be change, for example to 0.01.  When choosing a lenient p-value threshold (0.01) ANGSD infers more SNP sites than the other two methods when choosing a strict p-value threshold (10−6) fewer sites are called.
+
+#Running the same command but adding doGlf 2 which gives an output beagle file to use in PCAngsd
+```
+./angsd -bam ./prueba/bam.filelist -GL 2 -out ./prueba/beagle/genolike -nThreads 10 -doMajorMinor 1 -do
+Maf 2 -SNP_pval 1e-6 -doGlf 2 -ref reference.fasta
+```
  
