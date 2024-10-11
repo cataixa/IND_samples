@@ -1,4 +1,5 @@
- #Create a list with the bam files and index them
+ #Create a list with the bam files and index them. Careful with the path, if I have my bam files in a different folder than angsd my bam.filelist have to include the path to the bam samples. I can
+ always leave the bam files within angsd folder and then do a folder for the outputs
 
 ```
 ls ./*.bam > bam.filelist
