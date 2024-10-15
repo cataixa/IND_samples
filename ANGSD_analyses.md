@@ -20,12 +20,4 @@ maybe incompatible parameters? maybe I was missing the doMaf? snp_pvalue can be 
 
 The maf.gz was corrupted, I wasn't able to open it but see below 
 
-###Running the same command but adding doGlf 2 which gives an output beagle file to use in PCAngsd. 
-```
-./angsd -bam ./prueba/bam.filelist -GL 2 -out ./prueba/beagle/genolike -nThreads 10 -doMajorMinor 1 -doMaf 2 -SNP_pval 1e-6 -doGlf 2 -ref reference.fasta
-gunzip -c genolike.mafs.gz |head 
-```
-It worked and I could read the maf. Now running PCAngsd that it works only if it is inside a conda env and follow this intrusctions https://github.com/Rosemeis/pcangsd
-```
-pcangsd -b genolike.beagle.gz -e 2 -t 20 -o pcangsd
-```
+
