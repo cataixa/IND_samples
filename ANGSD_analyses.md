@@ -10,7 +10,11 @@ for i in *.bam;do samtools index $i;done
  ```
  ./angsd -bam bam.filelist -GL 2 -out filtered_output -nThreads 8 -doMajorMinor 1 -uniqueOnly 1 -minMapQ 30 -minQ 20 -only_proper_pairs 1 -remove_bads 1 -skipTriallelic 1 -baq 1 -ref reference.fasta
  ```
-NOTE: -doMajorMinor 1; From input for either sequencing data like bam files or from genotype likelihood data like glfv3 the major and minor allele can be inferred directly from likelihoods. We use a maximum likelihood approach to choose the major and minor alleles. Details of the method can be found in the theory section of this page and for citation use this publication Skotte2012 and is briefly described here. 
+NOTE: -doMajorMinor 1; From input for either sequencing data like bam files or from genotype likelihood data like glfv3 the major and minor allele can be inferred directly from likelihoods. We use a maximum likelihood approach to choose the major and minor alleles. Details of the method can be found in the theory section of this page and for citation use this publication Skotte2012 and is briefly described here.
+
+```
+gunzip -c output.mafs.gz |head
+```
 
 It didnt recognize -SNP_pval 1e-6 -minMaf 0.05 why?? It did with less samples (35) and less parametres; 
 ```
