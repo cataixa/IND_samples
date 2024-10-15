@@ -7,6 +7,14 @@ It worked and I could read the maf. Now running PCAngsd that it works only if it
 ```
 pcangsd -b genolike.beagle.gz -e 2 -t 20 -o pcangsd
 ```
+Check the outputs
+```
+gunzip -c genolike.beagle.gz | head -n 10 | cut -f 1-10 | column -t #In order to see the first 10 columns and 10 lines of the input file
+```
+```
+gunzip -c genolike.beagle.gz | wc -l #To count the number of lines which indicates the number of loci for which there are GLs plus one (as the command includes the count of the header line)
+```
+
 
 PCAngsd make a covariance matrix but it reports that it did not converge using 2 eigenvectors indicating that the optimization process (used to calculate the eigenvectors and eigenvalues) didn't fully stabilize. It means that the iterative process 
 didn't reach a point where the results stopped changing significantly with further iterations. This raises questions about the reliability of the results, but it's not necessarily a deal-breaker for interpreting your PCA. Here’s what to consider:
