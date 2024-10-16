@@ -14,6 +14,28 @@ NOTE: -doMajorMinor 1; From input for either sequencing data like bam files or f
 
 Important to add doMaf to get the SNPs and being able to add the SNP_pval flag
 
+-GL 2: Uses the GATK genotype likelihood model (GL = Genotype Likelihood).
+
+-doMajorMinor 1: Estimates the major and minor alleles for each site.
+
+-doMaf 2: Calculates the site frequency spectrum and produces the minor allele frequency (MAF) based on the inferred alleles.
+
+-SNP_pval 0.01: Filters SNPs based on a p-value threshold of 0.01.
+
+-uniqueOnly 1: Uses only uniquely mapped reads (reads that map to a single location in the genome).
+
+-minMapQ 30: Filters out reads with a mapping quality score below 30.
+
+-minQ 20: Filters out bases with a base quality score below 20.
+
+-only_proper_pairs 1: Uses only properly paired reads (paired-end reads that align as expected).
+
+-remove_bads 1: Removes reads flagged as "bad" by the aligner.
+
+-skipTriallelic 1: Skips triallelic sites (sites with more than two alleles).
+
+-baq 1: Performs BAQ (Base Alignment Quality) adjustment to reduce false positives due to misalignments near indels.
+
 ```
 gunzip -c output.mafs.gz |head
 ```
