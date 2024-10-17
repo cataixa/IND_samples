@@ -40,6 +40,31 @@ Important to add doMaf to get the SNPs and being able to add the SNP_pval flag
 gunzip -c output.mafs.gz |head
 ```
 
+# After beagle format (see PCA_with_angsd) I run NGSadmixture
+NGSadmix is a tool for estimating individual admixture proportions from NGS data. It is based on genotype likelihoods and works well for medium and low coverage NGS data.
+
+K=2 as number of ancestral populations (the number of pop I think I have??)
+
+```
+./NGSadmix -likes ../angsd/prueba/beagle/genolike.beagle.gz -K 2 -P 10 -o ../angsd/prueba/beagle/ngsadmix
+```
+see the tutorials to check the outputs http://www.popgen.dk/software/index.php/NgsAdmixTutorial
+
+In R
+
+# Get ID and pop info for each individual
+write.table(metadata$Population, file = "poplabel", row.names = FALSE, col.names = FALSE, quote = FALSE)#creo una lista con las poblaciones a las que pertenece cada individuo y la pongo en filezilla downloads
+pop<-scan("C:/Users/Katta/Documents/HIMB/Filezilla downloads/poplabel",what="whatever") 
+
+# Read inferred admixture proportions file
+q<-read.table("C:/Users/Katta/Documents/HIMB/Filezilla downloads/ngsadmix.qopt")
+
+# Plot them (ordered by population)
+```
+ord = order(pop)
+par(mar=c(7,4,1,1))
+barplot(t(q)[,ord],col=c(2,1,3),names=pop[ord],las=2,ylab="Demo1 Admixture proportions",cex.names=0.75)
+```
 
 
 
