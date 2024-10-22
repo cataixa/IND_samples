@@ -17,3 +17,8 @@ for FILE in $BASEDIR/*.fq.gz; do
     fastqc -o $OUTPUT_DIR $FILE
 done
 ```
+#Go to the folder and run multiqc
+```
+cd fastqc_results
+multiqc .
+```
