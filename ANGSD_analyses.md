@@ -6,7 +6,7 @@ ls ./*.bam > bam.filelist
 for i in *.bam;do samtools index $i;done
 ```
 
- ###Calculate Genotype Likelihoods, filtering parameters and call SNPs
+ #Calculate Genotype Likelihoods, filtering parameters and call SNPs
  ```
  ./angsd -bam ../INDIVIDUAL_project/mapping/bam.filelist -GL 2 -out ../INDIVIDUAL_project/mapping/angsd_results/output -nThreads 8 -doMajorMinor 1 -doMaf 2 -SNP_pval 0.01 -uniqueOnly 1 -minMapQ 30 -minQ 20 -only_proper_pairs 1 -remove_bads 1 -skipTriallelic 1 -baq 1 -ref reference.fasta
  ```
@@ -39,6 +39,14 @@ Important to add doMaf to get the SNPs and being able to add the SNP_pval flag
 ```
 gunzip -c output.mafs.gz |head
 ```
+# First run
+It is recomended to run all the parameters together at the same time because ANGSD usually works with bam files so you don't have to run everything (GL, filtering etc...) everytime to get 
+the outputs we need (see below). It is a good exploratory survey 
+
+```
+./angsd -bam ../INDIVIDUAL_project/mapping/bam.filelist -GL 2 -out ../INDIVIDUAL_project/mapping/results_total/output -nThreads 8 -doMajorMinor 1 -doMaf 1 -SNP_pval 1e-6 -uniqueOnly 1 -minMapQ 20 -minQ 20 -minInd 5 -setMinDepthInd 2 -setMinDepth 7 -setMaxDepth 30 -doCounts 1 -doGlf 1 -only_proper_pairs 1 -remove_bads 1 -skipTriallelic 1 -baq 1 -ref reference.fasta -doIBS 1 -doCov 1 -makeMatrix 1 -doDepth 1
+```
+NOTE. covariance and distance matrices (-doIBS 1 -doCov 1 -makeMatrix 1), global and individual depth histograms (-doDepth 1)
 
 # After beagle format (see PCA_with_angsd) I run NGSadmixture
 NGSadmix is a tool for estimating individual admixture proportions from NGS data. It is based on genotype likelihoods and works well for medium and low coverage NGS data.
@@ -50,16 +58,16 @@ K=2 as number of ancestral populations (the number of pop I think I have??)
 ```
 see the tutorials to check the outputs http://www.popgen.dk/software/index.php/NgsAdmixTutorial
 
-In R
+# In R
 
-# Get ID and pop info for each individual
+## Get ID and pop info for each individual
 write.table(metadata$Population, file = "poplabel", row.names = FALSE, col.names = FALSE, quote = FALSE)#creo una lista con las poblaciones a las que pertenece cada individuo y la pongo en filezilla downloads
 pop<-scan("C:/Users/Katta/Documents/HIMB/Filezilla downloads/poplabel",what="whatever") 
 
-# Read inferred admixture proportions file
+## Read inferred admixture proportions file
 q<-read.table("C:/Users/Katta/Documents/HIMB/Filezilla downloads/ngsadmix.qopt")
 
-# Plot them (ordered by population)
+## Plot them (ordered by population)
 ```
 ord = order(pop)
 par(mar=c(7,4,1,1))
