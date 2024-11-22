@@ -1,7 +1,7 @@
 Establish path of variables is useful so I dont have to be inside ANGSD
 ```
-ANGSD=~/working/ubuntu/angsd/angsd
-REALSFS=~/working/ubuntu/angsd/misc/realSFS
+ANGSD=~/working/angsd/angsd
+REALSFS=~/working/angsd/misc/realSFS
 ```
  
  
